@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/2aa2601b-13a0-483a-85e5-07cbd780550a/resourceGroups/RyanJLevel3/providers/Microsoft.Web/sites/MechanicalGallery",
+    "appService.deploySubpath": "build"
+}
