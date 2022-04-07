@@ -6,6 +6,7 @@ import Banner from './Banner.js';
 import UserContext from '../context/UserContext.js';
 import Footer from './Footer.js';
 import PersonalBuild from '../assets/CompPeripherals (2).jpg';
+import '../styles/LandingStyles.css';
 
 export default function LandingPage() {
   
@@ -22,7 +23,7 @@ export default function LandingPage() {
           {/* About Section Here */}
           <div id="aboutBox">
             <div id="aboutTitleBox">
-              <h2 id="aboutTitle">About Us</h2>
+              <h2 id="aboutTitle">About Mechanical Gallery</h2>
             </div>
             <div id="aboutMainSection">
               <div id="aboutImageBox">

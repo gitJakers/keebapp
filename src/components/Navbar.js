@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import UploadModal from './UploadModal.js';
 import LoginModal from './LoginModal.js';
 import UserContext from '../context/UserContext.js';
+import '../styles/NavbarStyles.css';
 
 export default function Navbar() {
     const { currentUser } = useContext(UserContext);

@@ -1,0 +1,56 @@
+#resourcePage {
+  max-width: 80rem;
+  width: 80%;
+  margin: auto;
+}
+
+#resourceTitle {
+  font-family: "Rubik";
+}
+
+#resourcesHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+
+.resourceBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+  width: 80vw;
+  padding: 1rem;
+  border: 1px black solid;
+  border-radius: 1rem;
+}
+
+.resourceImg {
+  display: flex;
+  align-items: center;
+}
+
+.resourceLinkBox {
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+#kbdLogo {
+  border: 1px black solid;
+  height: max-content;
+  background-color: black;
+}
+
+#kbdLogoBox {
+  display: flex;
+  align-items: center;
+}
+
+#subredditImg {
+  max-width: 10rem;
+  max-height: 10rem;
+  min-width: 2rem;
+  min-height: 2rem;
+}

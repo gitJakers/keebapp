@@ -6,6 +6,7 @@ import KBDLogo from '../assets/KBDLogo.png';
 import Footer from './Footer.js';
 import SubredditIcon from '../assets/SubredditIcon.png';
 import DropLogo from '../assets/DropLogo.PNG';
+import '../styles/ResourceStyles.css';
 
 export default function ResourcePage() {
   const { currentUser } = useContext(UserContext);

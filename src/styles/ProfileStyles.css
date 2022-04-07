@@ -1,0 +1,65 @@
+/* Profile styles */
+.Container {
+  margin: auto;
+  width: 80%;
+}
+
+.themeContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+/* #logoutBtn {
+    margin: auto;
+    justify-content: flex-end;
+} */
+
+#logoutBtnBox {
+  display: flex;
+  align-items: flex-end;
+}
+
+.profileBuildContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  max-height: 20rem;
+}
+
+#uploadedContainer {
+  min-height: 15rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid;
+}
+
+#savedContainer {
+  height: fit-content;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid;
+}
+
+#commentContainer {
+  margin-bottom: 1rem;
+}
+
+#savedBuilds {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#uploadedComments {
+  max-height: 17rem;
+  overflow-y: scroll;
+}
+
+.buildViewerBody {
+  max-height: 20rem;
+  overflow-y: scroll;
+}
+
+/* Profile Page Styles Above */

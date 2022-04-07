@@ -4,6 +4,7 @@ import UserContext from '../context/UserContext.js';
 import Button from 'react-bootstrap/Button'
 import { GetBuildsByUserId, GetCommentsByUserId, GetSavedBuildsByUserId, GetSavedBuildsById, GetSavedBuilds, GetUserById } from '../Services/apiService.js';
 import BuildCard from './BuildCard.js';
+import '../styles/ProfileStyles.css';
 
 export default function ProfilePage() {
 

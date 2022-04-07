@@ -7,6 +7,7 @@ import QWERTY from '../assets/QWERTY.png';
 import AZERTY from '../assets/AZERTY.png';
 import Colemak from '../assets/Colemak.png';
 import Dvorak from '../assets/Dvorak.png';
+import '../styles/HistoryStyles.css';
 
 export default function HistoryPage() {
     const { currentUser } = useContext(UserContext);

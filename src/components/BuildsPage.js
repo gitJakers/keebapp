@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import Banner from './Banner.js';
 import UserContext from '../context/UserContext.js';
 import { GetAllBuilds } from '../Services/apiService.js';
 import BuildCard from './BuildCard.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCog } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
+import '../styles/BuildStyles.css';
 
 export default function BuildsPage() {
 

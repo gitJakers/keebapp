@@ -1,0 +1,71 @@
+/* Builds Page Styles Below */
+#buildSearchBar {
+  width: 25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#buildsBox {
+  max-height: calc(100vh - 138px);
+}
+
+#buildsGallery {
+  max-width: 80vw;
+  height: 80vh;
+  margin: auto;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.buildBoxDefault {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.buildCard {
+  background-color: green;
+  width: 20rem;
+  height: 15rem;
+  margin: 0.5rem;
+}
+
+button.saveBtn {
+  border-style: none;
+  border-radius: 0px;
+  max-width: 5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #6c698d;
+}
+
+.buildCardImg {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  max-height: 10rem;
+  max-width: 10rem;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.profileComment {
+  border: 2px solid;
+  border-radius: 5px;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+/* Builds Page Styles Above */
