@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import { SaveBuild, UnsaveBuild, GetSavedBuildsByUserId, GetSavedBuildsById, GetSavedBuilds } from '../Services/apiService.js';
 import UserContext from '../context/UserContext.js';
 import BuildViewer from '../components/BuildViewer.js';
+import Toast from 'react-bootstrap/Toast'
 
 export default function BuildCard({ buildInfo: build }) {
 
@@ -48,7 +49,7 @@ export default function BuildCard({ buildInfo: build }) {
                 buildToUnsave = savedBuild;
                 console.log(buildToUnsave);
                 if (UnsaveBuild(buildToUnsave)) {
-                    console.log('build successfully removed from saved.')
+                    console.log('build successfully removed from saved.') //Alert 
                     // loadSavedBuilds();
                 }
             }

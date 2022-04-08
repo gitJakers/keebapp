@@ -55,13 +55,12 @@ export default function UploadModal() {
             console.log("Build already exists with that name. Please try again") // ALerts
         } else {
             console.log("Build uploaded successfully") // Alerts
-            
         }
         setUploading(false);
     };
 
     const handleImage = async(e) => {
-        console.log(e);
+        // console.log(e);
         setFile(e.target.files[0])
     }
 

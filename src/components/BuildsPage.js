@@ -4,7 +4,7 @@ import UserContext from '../context/UserContext.js';
 import { GetAllBuilds } from '../Services/apiService.js';
 import BuildCard from './BuildCard.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 import '../styles/BuildStyles.css';
 
 export default function BuildsPage() {
@@ -35,9 +35,6 @@ export default function BuildsPage() {
         <Banner title="Keyboard Builds" />
         {/* Filter Section */}
         <div id="buildsBox">
-          {/* <div id="buildFilterSidebar">
-            <h3>Filter Settings</h3>
-          </div> */}
           {/* Build Gallery */}
           <input type="text" placeholder="Search for builds by name" id="buildSearchBar" onChange={(e) => handleBuildSearch(e.target.value)} />
           <div id="buildsGallery">
@@ -45,7 +42,7 @@ export default function BuildsPage() {
             {
               buildData === null || buildData === undefined ?
                 <div style={{margin: "auto"}}>
-                  <FontAwesomeIcon style={{marginLeft:"8rem"}} className="fa-spin fa-4x" icon={faCog} />
+                  <FontAwesomeIcon style={{marginLeft:"8rem"}} className="fa-spin fa-4x" icon={faGear} />
                   <p style={{fontWeight:"bold", fontSize:"1.4rem"}}>Builds are loading please wait...</p>
                 </div>
                 // Add loading spinner here

@@ -211,7 +211,6 @@ div.buildViewerAccordion{
 
 .buildViewerBody {
   height: fit-content;
-  
 }
 
 #buildViewerImage {
@@ -227,14 +226,10 @@ img.buildViewerImg {
   width: 100%;
 }
 
-
 div.modal-dialog{
   margin: auto;
   margin-left: 20%;
 }
-
-
-
 /* Build Viewer Styles Above */
 
 /* Build Uploader Styles */
