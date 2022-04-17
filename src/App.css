@@ -185,53 +185,9 @@ div#loginModalFooter {
 }
 /* Footer Styles Above */
 
-/* Build Viewer Styles Below */
-div.buildViewerModal div.modal-content {
-  display: flex;
-  flex-direction: row;
-  width: fit-content;
-  max-width: 80rem;
-  height: 30rem;
-  /* height: fit-content; */
+/* Toast Styles */
+.toastAlert {
+  z-index: 1;
+  margin: 1rem;
+  margin-top: 2.75rem;
 }
-
-div.accordion-item {
-  height: fit-content;
-}
-
-div.buildViewerAccordion{
-  min-height: 100%;
-  /* max-width:40rem; */
-}
-
-.buildViewerDropdown {
-  width: 30vw;
-  height: calc(100% - 52px);
-}
-
-.buildViewerBody {
-  height: fit-content;
-}
-
-#buildViewerImage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  width: 40vw;
-}
-
-img.buildViewerImg {
-  height: 100%;
-  width: 100%;
-}
-
-div.modal-dialog{
-  margin: auto;
-  margin-left: 20%;
-}
-/* Build Viewer Styles Above */
-
-/* Build Uploader Styles */
-
-/* Build Uploader Styles End */

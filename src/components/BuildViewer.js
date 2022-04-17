@@ -5,6 +5,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import { GetUsernameByUserId, GetCommentsByBuildId, UploadComment } from '../Services/apiService.js';
 import UserContext from '../context/UserContext.js';
 import Alert from 'react-bootstrap/Alert'
+import '../styles/ViewerStyles.css'
 
 export default function BuildViewer({ build: buildData, buildPic: buildImage }) {
 

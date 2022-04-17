@@ -5,9 +5,13 @@ import Button from 'react-bootstrap/Button'
 import { InputGroup, Form } from 'react-bootstrap'
 import { AddNewBuild, UploadImage } from '../Services/apiService.js';
 import UserContext from '../context/UserContext.js';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer'
+import '../styles/UploadStyles.css'
 
 export default function UploadModal() {
     const { currentUser } = useContext(UserContext);
+
     //Modal Functions
     const [showModal, setModal] = useState(false);
     const handleClose = () => setModal(false);
@@ -16,6 +20,8 @@ export default function UploadModal() {
         setModal(true)
     };
     const [uploading, setUploading] = useState(false);
+    const [toastError, setError] = useState(false);
+    const [toastSuccess, setSuccess] = useState(false);
 
     // Uploaded Info
     const [uploadDate, setDate] = useState();
@@ -46,21 +52,20 @@ export default function UploadModal() {
 
     //Submit Function
     const addBuild = async () => {
-        let formData = new FormData();
-        formData.append(name, file);
-        setUploading(true);
-        const uploadData = await AddNewBuild(buildToAdd, currentUser.id);
-        const uploadImageData = await UploadImage(formData, name);
-        if(!uploadData){
-            console.log("Build already exists with that name. Please try again") // ALerts
-        } else {
-            console.log("Build uploaded successfully") // Alerts
-        }
-        setUploading(false);
+        // let formData = new FormData();
+        // formData.append(name, file);
+        // setUploading(true);
+        // const uploadData = await AddNewBuild(buildToAdd, currentUser.id);
+        // const uploadImageData = await UploadImage(formData, name);
+        // if (!uploadData) {
+        //     console.log("Build already exists with that name. Please try again") // ALerts
+        // } else {
+        //     console.log("Build uploaded successfully") // Alerts
+        // }
+        // setUploading(false);
     };
 
-    const handleImage = async(e) => {
-        // console.log(e);
+    const handleImage = async (e) => {
         setFile(e.target.files[0])
     }
 
@@ -77,7 +82,7 @@ export default function UploadModal() {
                         :
                         <>
                             <input type="file" accept='image/png, image/jpg, image/jpeg' onChange={handleImage} />
-                            <InputGroup>
+                            <InputGroup className="uploadInput">
                                 <InputGroup.Text>Name</InputGroup.Text>
                                 <Form.Control type="text" onChange={(e) => setName(e.target.value)} />
                                 <Form.Control.Feedback type="invalid">
@@ -90,7 +95,7 @@ export default function UploadModal() {
                                 <Form.Control type="text" onChange={(e) => setKeycaps(e.target.value)} />
                             </InputGroup>
                             {/* Switches */}
-                            <InputGroup>
+                            <InputGroup className="uploadInput">
                                 <InputGroup.Text>Switches</InputGroup.Text>
                                 <Form.Control type="text" onChange={(e) => setSwitches(e.target.value)} />
                             </InputGroup>
@@ -100,7 +105,7 @@ export default function UploadModal() {
                                 <Form.Control type="text" onChange={(e) => setPcb(e.target.value)} />
                             </InputGroup>
                             {/* Plates */}
-                            <InputGroup>
+                            <InputGroup className="uploadInput">
                                 <InputGroup.Text>Plates</InputGroup.Text>
                                 <Form.Control type="text" onChange={(e) => setPlates(e.target.value)} />
                             </InputGroup>
@@ -110,7 +115,7 @@ export default function UploadModal() {
                                 <Form.Control type="text" onChange={(e) => setCase(e.target.value)} />
                             </InputGroup>
                             {/* Cables */}
-                            <InputGroup>
+                            <InputGroup className="uploadInput">
                                 <InputGroup.Text>Cables</InputGroup.Text>
                                 <Form.Control type="text" onChange={(e) => setCables(e.target.value)} />
                             </InputGroup>
@@ -120,7 +125,7 @@ export default function UploadModal() {
                                 <Form.Control type="text" onChange={(e) => setController(e.target.value)} />
                             </InputGroup>
                             {/* Description */}
-                            <InputGroup>
+                            <InputGroup className="uploadInput">
                                 <InputGroup.Text>Description</InputGroup.Text>
                                 <Form.Control type="text" onChange={(e) => setDescription(e.target.value)} />
                             </InputGroup>
@@ -136,6 +141,20 @@ export default function UploadModal() {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <ToastContainer className="toastAlert" position="top-end">
+                <Toast bg='success' show={toastSuccess} onClose={() => setSuccess(false)}>
+                    <Toast.Header>
+                        <img
+                            src="holder.js/20x20?text=%20"
+                            className="rounded me-2"
+                            alt=""
+                        />
+                        <strong className="me-auto">Upload Status</strong>
+                    </Toast.Header>
+                    <Toast.Body className='text-white'>Build Successfully Uploaded!</Toast.Body>
+                </Toast>
+            </ToastContainer>
+
         </>
     )
 }
