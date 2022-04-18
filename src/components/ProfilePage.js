@@ -68,7 +68,7 @@ export default function ProfilePage() {
             {
               savedBuildsData === undefined || savedBuildsData.length === 0
               ?
-              <p>No builds have been saved.</p>
+              <p>No builds have been saved. If you are expecting builds here try refreshing the page.</p>
               :
               savedBuildsData.map((build, index) => {
                 return (

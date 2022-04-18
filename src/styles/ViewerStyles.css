@@ -46,4 +46,19 @@ div.buildViewerModal div.modal-dialog {
 div#buildViewerImage p {
   color:white;
 }
+
+.commentSubmitBtn {
+
+}
+
+.commentRow {
+  display: flex;
+  flex-direction: row;
+  margin-bottom:1rem;
+}
+
+.commentBox {
+  width: 16rem;
+}
+
 /* Build Viewer Styles Above */

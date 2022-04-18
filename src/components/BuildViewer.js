@@ -6,6 +6,8 @@ import { GetUsernameByUserId, GetCommentsByBuildId, UploadComment } from '../Ser
 import UserContext from '../context/UserContext.js';
 import Alert from 'react-bootstrap/Alert'
 import '../styles/ViewerStyles.css'
+import Toast from 'react-bootstrap/Toast'
+import ToastContainer from 'react-bootstrap/ToastContainer'
 
 export default function BuildViewer({ build: buildData, buildPic: buildImage }) {
 
@@ -19,7 +21,8 @@ export default function BuildViewer({ build: buildData, buildPic: buildImage }) 
   const [comments, setComments] = useState(null);
   const [newComment, setNewComment] = useState('');
   const [accordKey, setKey] = useState('0');
-  const [alert, setAlert] = useState(false);
+  const [showToast, setShow] = useState(false);
+  const [toastMessage, setMessage] = useState("You must sign in to comment.");
 
   useEffect(() => {
 
@@ -38,13 +41,14 @@ export default function BuildViewer({ build: buildData, buildPic: buildImage }) 
   }
 
   const handleCommentSubmit = async () => {
-    // console.log("Comment to upload: ", newComment.length, buildData.id)
     if (currentUser === null) {
       // Alert Here
-      console.log('You must sign in before you can upload comments');
+      setShow(true);
+      setMessage("You must sign in to comment.");
     } else if (newComment.length === 0) {
       // Alert Here
-      console.log("Please enter a comment before attempting to upload.")
+      setShow(true);
+      setMessage("Please enter a comment before attempting to upload.");
     } else {
       await UploadComment(newComment, currentUser.id, buildData.id, currentUser.username)
       setComments(await GetCommentsByBuildId(buildData.id));
@@ -52,7 +56,6 @@ export default function BuildViewer({ build: buildData, buildPic: buildImage }) 
   }
 
   return (
-
     <div>
       <Button variant="primary" onClick={() => handleView()}>
         View
@@ -62,8 +65,7 @@ export default function BuildViewer({ build: buildData, buildPic: buildImage }) 
           {/* Build Image */}
           {buildImage === null || buildImage.length <= 7000 ?
             <>
-              <p>buildImage is null</p>
-              {/* <img src={DustBunny} alt="" /> */}
+              <p>No Build Image Uploaded</p>
             </>
             :
             <img src={buildImage} className="buildViewerImg" alt="" />
@@ -76,7 +78,7 @@ export default function BuildViewer({ build: buildData, buildPic: buildImage }) 
               <h4>{buildData.name}</h4>
               {
                 username === null ?
-                  <p>Spinner Here</p>
+                  <p>Loading...</p>
                   :
                   <h4>Uploaded By: {username}</h4>
               }
@@ -94,16 +96,17 @@ export default function BuildViewer({ build: buildData, buildPic: buildImage }) 
           <Accordion.Item className="buildViewerDropdown" eventKey="1" onClick={() => setKey('1')}>
             <Accordion.Header>Comments</Accordion.Header>
             <Accordion.Body className="buildViewerBody">
-              <input type="text" placeholder="Write a comment" onChange={(e) => handleComment(e.target.value)} /><Button onClick={handleCommentSubmit}>Add Comment</Button>
+              <div className="commentRow">
+              <input className="commentBox" type="text" placeholder="Write a comment" onChange={(e) => handleComment(e.target.value)} /><Button className="commentSubmitBtn" onClick={handleCommentSubmit}>Submit</Button>
+              </div>
               {comments === null || comments.length <= 0 ?
                 <p>No Comments</p>
                 :
                 comments.map((comment, index) => {
                   return (
                     <div key={index}>
-                      <p>{comment.username}</p>
+                      <strong>{comment.username}</strong><span> {comment.uploadDate}</span>
                       <p>{comment.comment}</p>
-                      <p>{comment.uploadDate}</p>
                     </div>
                   )
                 })
@@ -111,6 +114,19 @@ export default function BuildViewer({ build: buildData, buildPic: buildImage }) 
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
+      <ToastContainer className="toastAlert" position="middle-center">
+        <Toast bg='danger' show={showToast} onClose={() => setShow(false)}>
+          <Toast.Header>
+            <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+            />
+            <strong className="me-auto">Comment Status</strong>
+          </Toast.Header>
+          <Toast.Body className='text-white'>Comment Failed To Upload: {toastMessage}</Toast.Body>
+        </Toast>
+      </ToastContainer>
       </Modal>
     </div>
 

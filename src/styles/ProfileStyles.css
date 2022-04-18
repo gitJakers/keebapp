@@ -24,8 +24,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  overflow-y: scroll;
   max-height: 20rem;
+  overflow-y: scroll;
 }
 
 #uploadedContainer {

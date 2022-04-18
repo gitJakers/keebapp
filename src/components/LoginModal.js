@@ -21,10 +21,17 @@ export default function LoginModal() {
     const [loginStatus, setStatus] = useState(false);
     const [serverLoading, setLoading] = useState(false);
     const [loginError, setError] = useState(false);
+    const [createStatus, setCreateStatus] = useState(false);
+    const [createMessage, setMessage] = useState("");
 
     const handleClose = () => setModal(false);
     const handleShow = () => setModal(true);
-    const newUser = () => setCreate(!createBool);
+    const newUser = () => {
+        setCreateStatus(false);
+        setCreate(!createBool)
+        setUsername('');
+        setPassword('');
+    };
     const handleUsername = (username) => setUsername(username);
 
     const signIn = async () => {
@@ -32,11 +39,12 @@ export default function LoginModal() {
         setLoading(true);
         if (createBool) {
             const createAccountData = await CreateAccount(username, password);
-            if (createAccountData) {
-                console.log("Account Create Successfully")
+            if (createAccountData) {   
+                setMessage("Account Created Successfully");
             } else {
-                console.log("Username already exists please try again.")
+                setMessage("Username already exists, please try again.")
             }
+            setCreateStatus(true);
             // Need code for animation here 
         } else {
             const loginData = await Login(username, password);
@@ -60,11 +68,9 @@ export default function LoginModal() {
 
     // Local storage needed here
     const logout = async () => {
-        console.log("logout now")
         localStorage.removeItem('UserId');
         localStorage.removeItem('Username');
         localStorage.removeItem('loginToken');
-        console.log(currentUser);
         // Remove local storage key 
     }
 
@@ -81,10 +87,8 @@ export default function LoginModal() {
                         <Link to="/Profile">
                             <Dropdown.Item as="button">Go to profile</Dropdown.Item>
                         </Link>
-                        {/* <Dropdown.Item href="#/action-2" onClick={() => console.log("Toggle theme")}>Dark / Light Mode</Dropdown.Item> */}
                         <Dropdown.Divider />
                         <Dropdown.Item href="/" onClick={logout}>Logout</Dropdown.Item>
-                        {/* <Button onClick={() => logout()}>Logout</Button> */}
                     </Dropdown.Menu>
                 </Dropdown>
                 :
@@ -94,7 +98,6 @@ export default function LoginModal() {
             <Modal id="loginModal" show={showModal} onHide={handleClose} centered>
                 {/* Ternary here for login animation */}
                 <Modal.Header id="loginModalHeader">
-                    {/* <FontAwesomeIcon id="loadingSpinner" icon={faSpinner}/> */}
                     {/* <p>Testing</p> */}
                     <span>
                         {loginStatus ?
@@ -123,6 +126,12 @@ export default function LoginModal() {
                         :
                         null
                     }
+                    {
+                        createStatus ? 
+                        <p>{createMessage}</p>
+                        : 
+                        null
+                    }
                     {/* Ternary for confirming login */}
                     {loginStatus ?
                         <p>{loginStatus ? `Logged in as user: ${currentUser.username}` : null}</p>
@@ -139,7 +148,7 @@ export default function LoginModal() {
                                     {createBool ? "Create Account" : "Login"}
                                 </Button>
                                 <Button className="loginModalBtn" onClick={() => newUser()}>
-                                    {createBool ? "Go to login" : "Create Account"}
+                                    {createBool ? "Go to login" : "Go To Create Account"}
                                 </Button>
                             </div>
                         </>

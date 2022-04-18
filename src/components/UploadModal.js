@@ -20,8 +20,6 @@ export default function UploadModal() {
         setModal(true)
     };
     const [uploading, setUploading] = useState(false);
-    const [toastError, setError] = useState(false);
-    const [toastSuccess, setSuccess] = useState(false);
 
     // Uploaded Info
     const [uploadDate, setDate] = useState();
@@ -35,6 +33,9 @@ export default function UploadModal() {
     const [controller, setController] = useState('');
     const [description, setDescription] = useState('');
     const [file, setFile] = useState();
+    const [showToast, setShow] = useState(false);
+    const [uploadStatus, setStatus] = useState(false);
+    const [toastError, setError] = useState('Build Upload Failed! Please Try Again.');
 
     //Build to be added to database
     const buildToAdd = {
@@ -52,17 +53,26 @@ export default function UploadModal() {
 
     //Submit Function
     const addBuild = async () => {
-        // let formData = new FormData();
-        // formData.append(name, file);
-        // setUploading(true);
-        // const uploadData = await AddNewBuild(buildToAdd, currentUser.id);
-        // const uploadImageData = await UploadImage(formData, name);
-        // if (!uploadData) {
-        //     console.log("Build already exists with that name. Please try again") // ALerts
-        // } else {
-        //     console.log("Build uploaded successfully") // Alerts
-        // }
-        // setUploading(false);
+        let formData = new FormData();
+        formData.append(name, file);
+        setUploading(true);
+        if (name === '') {
+            setStatus(false)
+            setShow(true);
+            setError("Upload Failed. Build name must not be empty.");
+            setModal(false);
+        } else {
+            const uploadData = await AddNewBuild(buildToAdd, currentUser.id);
+            const uploadImageData = await UploadImage(formData, name);
+            if (!uploadData) {
+                setStatus(false) // ALerts
+                setShow(true);
+            } else {
+                setStatus(true) // Alerts
+                setShow(true);
+            }
+        }
+        setUploading(false);
     };
 
     const handleImage = async (e) => {
@@ -142,19 +152,33 @@ export default function UploadModal() {
                 </Modal.Footer>
             </Modal>
             <ToastContainer className="toastAlert" position="top-end">
-                <Toast bg='success' show={toastSuccess} onClose={() => setSuccess(false)}>
-                    <Toast.Header>
-                        <img
-                            src="holder.js/20x20?text=%20"
-                            className="rounded me-2"
-                            alt=""
-                        />
-                        <strong className="me-auto">Upload Status</strong>
-                    </Toast.Header>
-                    <Toast.Body className='text-white'>Build Successfully Uploaded!</Toast.Body>
-                </Toast>
+                {
+                    uploadStatus ?
+                        <Toast bg='success' show={showToast} onClose={() => setShow(false)}>
+                            <Toast.Header>
+                                <img
+                                    src="holder.js/20x20?text=%20"
+                                    className="rounded me-2"
+                                    alt=""
+                                />
+                                <strong className="me-auto">Upload Status</strong>
+                            </Toast.Header>
+                            <Toast.Body className='text-white'>Build Successfully Uploaded!</Toast.Body>
+                        </Toast>
+                        :
+                        <Toast bg='danger' show={showToast} onClose={() => setShow(false)}>
+                            <Toast.Header>
+                                <img
+                                    src="holder.js/20x20?text=%20"
+                                    className="rounded me-2"
+                                    alt=""
+                                />
+                                <strong className="me-auto">Upload Status</strong>
+                            </Toast.Header>
+                            <Toast.Body className='text-white'>{toastError}</Toast.Body>
+                        </Toast>
+                }
             </ToastContainer>
-
         </>
     )
 }

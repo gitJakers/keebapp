@@ -1,5 +1,5 @@
 // const url = "https://keyboardapi.azurewebsites.net/";
-const url = "http://localhost:5196/"; //Change this back to the above link when publishing'
+const url = "https://keyboardapi.azurewebsites.net/"; //Change this back to the above link when publishing'
 
 const GetAllBuilds = async () => {
     return fetch(`${url}Builds/AllBuilds`)
