@@ -3,16 +3,17 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { Login, CreateAccount, GetUserByUsername, GetSavedBuildsByUserId, GetSavedBuildsById } from '../Services/apiService.js';
 import UserContext from '../context/UserContext.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown'
 import { Link } from 'react-router-dom'
+
 
 export default function LoginModal() {
 
     //Variable States
     const { currentUser, setUser, loadedFromStorage } = useContext(UserContext);
-    
+
     const [showModal, setModal] = useState(false);
     const [createBool, setCreate] = useState(false);
     const [username, setUsername] = useState('');
@@ -23,8 +24,13 @@ export default function LoginModal() {
     const [loginError, setError] = useState(false);
     const [createStatus, setCreateStatus] = useState(false);
     const [createMessage, setMessage] = useState("");
+    const [createButton, setButton] = useState(false);
 
-    const handleClose = () => setModal(false);
+    const handleClose = () => {
+        setModal(false)
+        setButton(false)
+    };
+
     const handleShow = () => setModal(true);
     const newUser = () => {
         setCreateStatus(false);
@@ -38,14 +44,14 @@ export default function LoginModal() {
         setError(false);
         setLoading(true);
         if (createBool) {
+            setButton(true);
             const createAccountData = await CreateAccount(username, password);
-            if (createAccountData) {   
+            if (createAccountData) {
                 setMessage("Account Created Successfully");
             } else {
                 setMessage("Username already exists, please try again.")
             }
             setCreateStatus(true);
-            // Need code for animation here 
         } else {
             const loginData = await Login(username, password);
             if (loginData.token === undefined) {
@@ -63,6 +69,7 @@ export default function LoginModal() {
                 // Animation code here as well
             }
         }
+        setButton(false);
         setLoading(false);
     }
 
@@ -127,10 +134,10 @@ export default function LoginModal() {
                         null
                     }
                     {
-                        createStatus ? 
-                        <p>{createMessage}</p>
-                        : 
-                        null
+                        createStatus ?
+                            <p>{createMessage}</p>
+                            :
+                            null
                     }
                     {/* Ternary for confirming login */}
                     {loginStatus ?
@@ -138,16 +145,26 @@ export default function LoginModal() {
                         :
                         <>
                             <div className="loginInput">
-                                <input type="text" placeholder="Username" onChange={(e) => handleUsername(e.target.value)} />
+                                <input type="text" placeholder="Username" value={username} onChange={(e) => handleUsername(e.target.value)} />
                             </div>
                             <div className="loginInput">
-                                <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
                             <div className="loginFooter">
-                                <Button className="loginModalBtn" onClick={async () => signIn()}>
-                                    {createBool ? "Create Account" : "Login"}
+                                <Button className="loginModalBtn" disabled={createButton == true || serverLoading ? true : false} onClick={async () => signIn()}>
+                                    {createButton ?
+                                        <span>Creating<FontAwesomeIcon style={{ marginLeft: "1rem" }} className="fa-spin" icon={faGear} /></span>
+                                        :
+                                        createBool ?
+                                            "Create Account"
+                                            :
+                                            serverLoading ?
+                                                <span>Signing In <FontAwesomeIcon style={{ marginLeft: "1rem" }} className="fa-spin" icon={faGear} /></span>
+                                                :
+                                                "Login"
+                                    }
                                 </Button>
-                                <Button className="loginModalBtn" onClick={() => newUser()}>
+                                <Button className="loginModalBtn" disabled={createButton == true || serverLoading ? true : false} onClick={() => newUser()}>
                                     {createBool ? "Go to login" : "Go To Create Account"}
                                 </Button>
                             </div>

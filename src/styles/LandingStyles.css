@@ -11,20 +11,26 @@
 #aboutTitle {
   font-family: "Rubik";
   color: #6c698d;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 #aboutMainImage {
-  max-width: 40vw;
-  height: 100%;
+  width: 50vw;
+  max-width: 50em;
+  /* height: 100%; */
 }
 
-#aboutDescription {
+.aboutDescription {
   font-family: "Rubik";
   color: #6c698d;
   font-size: 1.5rem;
+  margin-bottom:0;
 }
 
-#aboutDescBox {
+.aboutDescBox {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,4 +75,17 @@
 #extraLinksBanner {
   height: 20vh;
   background-color: #bf2626;
+}
+
+#landingContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  overflow-x: hidden;
+}
+
+#aboutImageBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
