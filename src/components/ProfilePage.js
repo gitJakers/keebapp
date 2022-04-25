@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import { GetBuildsByUserId, GetCommentsByUserId, GetSavedBuildsByUserId, GetSavedBuildsById, GetSavedBuilds, GetUserById } from '../Services/apiService.js';
 import BuildCard from './BuildCard.js';
 import '../styles/ProfileStyles.css';
+import UploadModal from './UploadModal.js';
 
 export default function ProfilePage() {
 
@@ -62,13 +63,13 @@ export default function ProfilePage() {
 
         {/* Saved Builds */}
         <div id="savedContainer">
-          <h3 className="profileTitle">Saved Builds</h3>
+          <h3 className="profileTitle">Followed Builds</h3>
           {/* Load Saved Builds here */}
           <div className="profileBuildContainer">
             {
               savedBuildsData === undefined || savedBuildsData.length === 0
               ?
-              <p>No builds have been saved. If you are expecting builds here try refreshing the page.</p>
+              <p>No builds have been followed. If you are expecting builds here try refreshing the page.</p>
               :
               savedBuildsData.map((build, index) => {
                 return (
@@ -81,7 +82,7 @@ export default function ProfilePage() {
 
         {/* Uploaded Builds */}
         <div id='uploadedContainer'>
-          <h3 className="profileTitle">My Builds</h3>
+          <h3 className="profileTitle">My Builds <UploadModal plus="true" /></h3>
           {/* Load User Builds Here */}
           <div className="profileBuildContainer">
             {

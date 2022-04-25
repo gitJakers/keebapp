@@ -82,9 +82,9 @@ export default function BuildCard({ buildInfo: build }) {
                     savedBuildsData === undefined ? null : //Prevent erroring when loading
                         currentUser.id === build.userId ? null : // Prevent user from saving their own builds
                             savedBuildsData.some((savedBuild) => savedBuild.id === build.id) ?
-                                <Button className="saveBtn" onClick={() => unsaveBuild(build)}>unsave</Button>
+                                <Button className="saveBtn" onClick={() => unsaveBuild(build)}>Unfollow</Button>
                                 :
-                                <Button className="saveBtn" onClick={() => saveBuild(build)}>save</Button>
+                                <Button className="saveBtn" onClick={() => saveBuild(build)}>Follow</Button>
                 }
                 <Card.Body>
                     <Card.Title>{build.name}</Card.Title>
@@ -100,9 +100,9 @@ export default function BuildCard({ buildInfo: build }) {
                                 className="rounded me-2"
                                 alt=""
                             />
-                            <strong className="me-auto">Save Status</strong>
+                            <strong className="me-auto">Follow Status</strong>
                         </Toast.Header>
-                        <Toast.Body className='text-white'>Build Not Saved.</Toast.Body>
+                        <Toast.Body className='text-white'>Build Not Followed.</Toast.Body>
                     </Toast>
                     :
                     <Toast bg='success' show={showToast} onClose={() => setShow(false)}>
@@ -112,7 +112,7 @@ export default function BuildCard({ buildInfo: build }) {
                                 className="rounded me-2"
                                 alt=""
                             />
-                            <strong className="me-auto">Save Status</strong>
+                            <strong className="me-auto">Follow Status</strong>
                         </Toast.Header>
                         <Toast.Body className='text-white'>{toastMessage}</Toast.Body>
                     </Toast>

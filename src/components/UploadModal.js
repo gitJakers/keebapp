@@ -11,7 +11,7 @@ import '../styles/UploadStyles.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-export default function UploadModal() {
+export default function UploadModal(props) {
     const { currentUser } = useContext(UserContext);
 
     //Modal Functions
@@ -83,7 +83,12 @@ export default function UploadModal() {
 
     return (
         <>
-            <Button id="uploadBtn" variant="primary" onClick={() => handleShow()}><FontAwesomeIcon className="fa-1x" icon={faPlus} />Upload Build</Button>
+            {
+                props.plus === "true" ?
+                    <FontAwesomeIcon onClick={() => handleShow()} title="Upload Build" alt="Upload Build Button" className="fa-s" icon={faPlus} />
+                    :
+                    <Button id="uploadBtn" title="Upload Build" alt="Upload Build Button" variant="primary" onClick={() => handleShow()}><FontAwesomeIcon className="fa-1x" icon={faPlus} />Upload Build</Button>
+            }
             <Modal show={showModal} onHide={handleClose} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Build Uploader</Modal.Title>

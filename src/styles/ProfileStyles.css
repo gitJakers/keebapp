@@ -62,4 +62,18 @@
   overflow-y: scroll;
 }
 
+.fa-s {
+  padding: .05em;
+  color: #1a7dce;
+}
+
+.fa-s:hover {
+  /* background: gray; */
+  color: #195c9b;
+}
+
+.profileTitle {
+  color: #6c698d;
+}
+
 /* Profile Page Styles Above */

@@ -80,6 +80,11 @@ div.modalBody {
   padding-top: 0px;
 }
 
+#loginModal {
+  font-family:"Rubik";
+  color: #5b409b;
+}
+
 .loginModalBtn {
   min-width:15vw;
   margin: 10px;
@@ -97,6 +102,10 @@ button.loginBtn {
 
 .userIcon {
   margin-right: .2em;
+}
+
+.dropdown button#dropdown-basic {
+  border-radius: 0;
 }
 
 /* Modal Adjustments for login modal need to differentiate between login and add build */
