@@ -30,7 +30,7 @@
 }
 
 div.buildCard {
-  background-color: green;
+  background-color: rgb(0, 0, 0);
   width: 20rem;
   height: 15rem;
   margin: 0.5rem;

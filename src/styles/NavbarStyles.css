@@ -9,6 +9,8 @@ div.navGroup {
 .navPages {
   display: flex;
   align-items: center;
+  margin: 1em;
+  /* justify-items: space-around; */
 }
 
 a h3.navLinks {
@@ -27,10 +29,30 @@ a h3.navLinks {
 }
 
 .linkBox {
-  margin-left: 2vw;
-  margin-right: 2vw;
+  display: flex;
+  padding: 1em;
+  margin-bottom: 1em;
+  margin: auto;
 }
+
+/* .linkBox:hover {
+  background-color: rgb(102, 250, 159);
+} */
 
 .navButtons {
   display: flex;
+}
+
+.navButtons button btn-primary {
+
+}
+
+.navBtnGroup {
+  display: flex;
+  align-items: center;
+}
+
+.fa-1x {
+  height: 1.5em;
+  /* color: #6c698d; */
 }
