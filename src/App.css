@@ -53,12 +53,12 @@
 }
 
 .HeaderTitle {
-  font-family: 'Oswald';
+  font-family: 'Oswald' ;
 }
 
 /* Red Title Banner */
 .Banner {
-  background-color: #BF2626;
+  background-color: #5b409b;
   min-height: 100px;
   display:flex;
   align-items: center;

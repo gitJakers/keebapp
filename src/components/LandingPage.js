@@ -23,7 +23,10 @@ export default function LandingPage() {
         <Container fluid="true" id="landingContainer">
           <Row>
             <Col>
+              <br />
+              <hr />
               <h2 id="aboutTitle">About Mechanical Gallery</h2>
+              <hr />
             </Col>
           </Row>
           <Row>
@@ -33,7 +36,7 @@ export default function LandingPage() {
                 <p className="aboutDescription">
                   Mechanical Gallery is a site dedicated to custom mechanical keyboard builds.
                   Here you will be able to see many different kinds of keyboards you may not
-                  have thought possible, and hopefully find just a bit of inspiration. For example 
+                  have thought possible, and hopefully find just a bit of inspiration. For example
                   take a look at this custom keyboard!
                 </p>
               </div>
@@ -44,7 +47,7 @@ export default function LandingPage() {
               <div className="aboutDescBox">
                 <p className="aboutDescription">
                   The main goal for this site is to primarily serve as a tool to view other custom
-                  keyboard builds, learn more about their history and what components they have. 
+                  keyboard builds, learn more about their history and what components they have.
                   This site also has a resource page which currently has some links to other useful
                   sites that are involved with custom keyboards. Take a look around and maybe even
                   make an account if you feel like uploading your own build!
