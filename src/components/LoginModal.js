@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import { Login, CreateAccount, GetUserByUsername, GetSavedBuildsByUserId, GetSavedBuildsById } from '../Services/apiService.js';
 import UserContext from '../context/UserContext.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faUser, faUserLargeSlash } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown'
 import { Link } from 'react-router-dom'
 
@@ -83,12 +83,14 @@ export default function LoginModal() {
 
     return (
         <>
+
             {/* Ternary for displaying different buttons */}
             {currentUser !== null
                 ?
                 <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        {currentUser.username}
+                        <FontAwesomeIcon icon={faUser} />
+                         {currentUser.username}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Link to="/Profile">
@@ -99,7 +101,7 @@ export default function LoginModal() {
                     </Dropdown.Menu>
                 </Dropdown>
                 :
-                <Button onClick={handleShow}>Sign In</Button>
+                <Button onClick={handleShow}><FontAwesomeIcon icon={faUserLargeSlash} /> Sign In</Button>
             }
             {/* Modal For logging in */}
             <Modal id="loginModal" show={showModal} onHide={handleClose} centered>
