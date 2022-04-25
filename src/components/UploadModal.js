@@ -8,6 +8,8 @@ import UserContext from '../context/UserContext.js';
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer'
 import '../styles/UploadStyles.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function UploadModal() {
     const { currentUser } = useContext(UserContext);
@@ -81,7 +83,7 @@ export default function UploadModal() {
 
     return (
         <>
-            <Button variant="primary" onClick={() => handleShow()}>Upload A Build</Button>
+            <Button id="uploadBtn" variant="primary" onClick={() => handleShow()}><FontAwesomeIcon className="fa-1x" icon={faPlus} />Upload Build</Button>
             <Modal show={showModal} onHide={handleClose} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Build Uploader</Modal.Title>

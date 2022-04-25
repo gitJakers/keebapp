@@ -2,3 +2,15 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+#uploadBtn {
+    display: flex;
+    align-items: center;
+    border-radius: 0px;
+    /* margin-right: 1em; */
+    /* border-style:none !important; */
+}
+
+#uploadBtn svg {
+    margin-right: .2em;
+}

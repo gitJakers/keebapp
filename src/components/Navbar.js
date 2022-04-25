@@ -54,6 +54,7 @@ export default function Navbar() {
                 </div>
             </div>
             <div className="navButtons">
+            <UploadModal />
                 {currentUser === null ?
                     null
                     :

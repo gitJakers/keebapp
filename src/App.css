@@ -91,6 +91,14 @@ div.modalBody {
   align-items: center;
 }
 
+button.loginBtn {
+  border-radius: 0;
+}
+
+.userIcon {
+  margin-right: .2em;
+}
+
 /* Modal Adjustments for login modal need to differentiate between login and add build */
 div#loginModal {
   max-width: 25vw;

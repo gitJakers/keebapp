@@ -89,7 +89,7 @@ export default function LoginModal() {
                 ?
                 <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        <FontAwesomeIcon icon={faUser} />
+                        <FontAwesomeIcon className="userIcon" icon={faUser} />
                          {currentUser.username}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -101,7 +101,7 @@ export default function LoginModal() {
                     </Dropdown.Menu>
                 </Dropdown>
                 :
-                <Button onClick={handleShow}><FontAwesomeIcon icon={faUserLargeSlash} /> Sign In</Button>
+                <Button className="loginBtn" onClick={handleShow}><FontAwesomeIcon className="userIcon" icon={faUserLargeSlash} />Sign In</Button>
             }
             {/* Modal For logging in */}
             <Modal id="loginModal" show={showModal} onHide={handleClose} centered>
