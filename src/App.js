@@ -9,7 +9,7 @@ import ProfilePage from './components/ProfilePage.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar.js';
 import UserContext from './context/UserContext.js';
-import { GetUserById, GetSavedBuilds, GetSavedBuildsById, GetSavedBuildsByUserId } from './Services/apiService.js';
+import { GetUserById, GetSavedBuilds, GetSavedBuildsById, GetSavedBuildsByUserId, GetAllBuilds } from './Services/apiService.js';
 
 function App() {
 
@@ -17,7 +17,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loadedFromStorage, setLoad] = useState();
   const [savedBuildsData, setSavedData] = useState();
-  const providerValue = useMemo(() => ({currentUser, setUser, isLoggedIn, setIsLoggedIn, loadedFromStorage, setLoad, savedBuildsData, setSavedData }), [currentUser, setUser], [isLoggedIn, setIsLoggedIn], [loadedFromStorage, setLoad], [savedBuildsData, setSavedData]);
+  const [allBuildData, setBuildDb] = useState(GetAllBuilds);
+  const providerValue = useMemo(() => ({currentUser, setUser, isLoggedIn, setIsLoggedIn, loadedFromStorage, setLoad, savedBuildsData, setSavedData, allBuildData, setBuildDb }), [currentUser, setUser], [isLoggedIn, setIsLoggedIn], [loadedFromStorage, setLoad], [savedBuildsData, setSavedData], [allBuildData, setBuildDb]);
 
   useEffect(async() => {
     if(localStorage.getItem('UserId') != null){

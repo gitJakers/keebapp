@@ -7,6 +7,9 @@ import Footer from './Footer.js';
 import SubredditIcon from '../assets/SubredditIcon.png';
 import DropLogo from '../assets/DropLogo.PNG';
 import '../styles/ResourceStyles.css';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default function ResourcePage() {
   const { currentUser } = useContext(UserContext);
@@ -28,6 +31,7 @@ export default function ResourcePage() {
         {/* Resource Links */}
         <div className="resourceLinkBox">
           <div className="resourceBlock">
+            
             <div className="resourceImg">
               <img src={MechKeyboardLogo} alt="Mechanical Keyboards Logo" title="MechanicalKeyboards.com" />
             </div>

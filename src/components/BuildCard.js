@@ -7,6 +7,9 @@ import UserContext from '../context/UserContext.js';
 import BuildViewer from '../components/BuildViewer.js';
 import Toast from 'react-bootstrap/Toast'
 import ToastContainer from 'react-bootstrap/ToastContainer'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartOut } from '@fortawesome/free-regular-svg-icons';
 
 export default function BuildCard({ buildInfo: build }) {
 
@@ -22,6 +25,7 @@ export default function BuildCard({ buildInfo: build }) {
 
     const handleGet = async () => { //Change this to url 
         //https://keyboardapi.azurewebsites.net/
+        //http://localhost:5196/
         let res = await fetch(`https://keyboardapi.azurewebsites.net/Builds/GetImageByName/${build.name}`);
         let data = await res.arrayBuffer();
         let newB = new Blob([data], { type: 'image/jpeg' })
@@ -83,12 +87,20 @@ export default function BuildCard({ buildInfo: build }) {
                         currentUser.id === build.userId ? null : // Prevent user from saving their own builds
                             savedBuildsData.some((savedBuild) => savedBuild.id === build.id) ?
                                 <Button className="saveBtn" onClick={() => unsaveBuild(build)}>Unfollow</Button>
+                                // <FontAwesomeIcon className="fa-1x saveBtn" title="Unfollow Build" alt="Unfollow build" icon={faHeartOut} onClick={() => unsaveBuild(build)}/>
                                 :
                                 <Button className="saveBtn" onClick={() => saveBuild(build)}>Follow</Button>
+                                // <FontAwesomeIcon className="fa-1x saveBtn" title="Follow Build" alt="Follow Build" icon={faHeart} onClick={() => saveBuild(build)}/>
                 }
                 <Card.Body>
-                    <Card.Title>{build.name}</Card.Title>
+                    {build == null || build == undefined ? null : 
+                    <>
+                    <Card.Title className="buildTitle">
+                        {build.name}
+                    </Card.Title>
                     <BuildViewer build={build} buildPic={buildImage} /> {/* Floppy Disk Icon Here */}
+                    </>
+                    }
                 </Card.Body>
             </Card>
             <ToastContainer className="toastAlert" position="top-end">

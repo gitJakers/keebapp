@@ -209,3 +209,9 @@ div#loginModalFooter {
   margin: 1rem;
   margin-top: 2.75rem;
 }
+
+.toastUploadAlert {
+  display: flex;
+  justify-content: flex-end;
+}
+/* Toast Styles End */

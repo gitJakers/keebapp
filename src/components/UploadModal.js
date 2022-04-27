@@ -3,7 +3,7 @@ import { useState, useContext } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import { InputGroup, Form } from 'react-bootstrap'
-import { AddNewBuild, UploadImage } from '../Services/apiService.js';
+import { AddNewBuild, UploadImage, GetAllBuilds } from '../Services/apiService.js';
 import UserContext from '../context/UserContext.js';
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer'
@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function UploadModal(props) {
-    const { currentUser } = useContext(UserContext);
+    const { currentUser, allBuildData, setBuildDb } = useContext(UserContext);
 
     //Modal Functions
     const [showModal, setModal] = useState(false);
@@ -70,8 +70,9 @@ export default function UploadModal(props) {
                 setStatus(false) // ALerts
                 setShow(true);
             } else {
-                setStatus(true) // Alerts
+                setStatus(true) // Alerts Success
                 setShow(true);
+                setBuildDb(await GetAllBuilds);
             }
         }
         setUploading(false);
@@ -158,7 +159,7 @@ export default function UploadModal(props) {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <ToastContainer className="toastAlert" position="top-end">
+            <ToastContainer className="toastUploadAlert" position="top-end">
                 {
                     uploadStatus ?
                         <Toast bg='success' show={showToast} onClose={() => setShow(false)}>

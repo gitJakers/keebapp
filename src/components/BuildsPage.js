@@ -9,11 +9,14 @@ import '../styles/BuildStyles.css';
 
 export default function BuildsPage() {
 
+  
+  const { currentUser, allBuildData, setBuildDb} = useContext(UserContext);
+  
   useEffect(async () => {
+    
     setData(await GetAllBuilds());
+  
   }, [])
-
-  const { currentUser } = useContext(UserContext);
 
   const [buildData, setData] = useState();
 

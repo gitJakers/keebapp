@@ -82,15 +82,15 @@ export default function BuildViewer({ build: buildData, buildPic: buildImage }) 
                   :
                   <h4>Uploaded By: {username}</h4>
               }
-              <p>Uploaded: {buildData.uploadDate}</p>
-              <p>Keycaps: {buildData.keycaps}</p>
-              <p>Switches: {buildData.switches}</p>
-              <p>Pcb: {buildData.pcb}</p>
-              <p>Plates: {buildData.plates}</p>
-              <p>Case: {buildData.case}</p>
-              <p>Cables: {buildData.cables}</p>
-              <p>Controller: {buildData.controller}</p>
-              <p>Description: {buildData.description}</p>
+              <p><strong>Uploaded: </strong>{buildData.uploadDate}</p>
+              <p><strong>Keycaps: </strong>{buildData.keycaps}</p>
+              <p><strong>Switches: </strong>{buildData.switches}</p>
+              <p><strong>Pcb: </strong>{buildData.pcb}</p>
+              <p><strong>Plates: </strong>{buildData.plates}</p>
+              <p><strong>Case: </strong>{buildData.case}</p>
+              <p><strong>Cables: </strong>{buildData.cables}</p>
+              <p><strong>Controller: </strong>{buildData.controller}</p>
+              <p><strong>Description: </strong>{buildData.description}</p>
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item className="buildViewerDropdown" eventKey="1" onClick={() => setKey('1')}>
