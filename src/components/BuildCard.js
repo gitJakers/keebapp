@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faGear } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartOut } from '@fortawesome/free-regular-svg-icons';
 
-export default function BuildCard({ buildInfo: build }) {
+export default function BuildCard(props) {
 
     const { currentUser, savedBuildsData, setSavedData } = useContext(UserContext);
     const [buildImage, setImage] = useState(null);
@@ -28,10 +28,10 @@ export default function BuildCard({ buildInfo: build }) {
         setLoading(true);
         //https://keyboardapi.azurewebsites.net/
         //http://localhost:5196/
-        let res = await fetch(`https://keyboardapi.azurewebsites.net/Builds/GetImageByName/${build.name}`);
+        let res = await fetch(`https://keyboardapi.azurewebsites.net/Builds/GetImageByName/${props.buildInfo.name}`);
         let data = await res.arrayBuffer();
         let newB = new Blob([data], { type: 'image/jpeg' })
-        let file = new File([newB], build.name, { type: 'image/jpeg' })
+        let file = new File([newB], props.buildInfo.name, { type: 'image/jpeg' })
         const reader = new FileReader();
         reader.onloadend = () => {
             setImage(reader.result);
@@ -39,11 +39,9 @@ export default function BuildCard({ buildInfo: build }) {
         reader.readAsDataURL(file);
         setLoading(false);
     }
-    const saveBuild = async (build) => {
-        if (currentUser.id !== build.userId) {
-            const result = SaveBuild(currentUser.id, build.id);
-            const savedArr = await GetSavedBuildsByUserId(currentUser.id);
-            await GetSavedBuildsById(savedArr);
+    const saveBuild = async () => {
+        if (currentUser.id !== props.buildInfo.userId) {
+            await SaveBuild(currentUser.id, props.buildInfo.id);
             setStatus(false);
             setMessage("Build Added to Saved Builds.");
             setShow(true);
@@ -51,23 +49,24 @@ export default function BuildCard({ buildInfo: build }) {
             setStatus(true);
             setShow(true);
         }
+        loadSavedBuilds();
     }
+
     const unsaveBuild = async (build) => {
         const savedBuildsArray = await GetSavedBuildsByUserId(currentUser.id);
         let buildToUnsave = {};
         savedBuildsArray.map(savedBuild => {
             if (savedBuild.buildId === build.id) {
-                console.log("Found build in the saved builds table: ", build);
                 buildToUnsave = savedBuild;
-                console.log(buildToUnsave);
                 if (UnsaveBuild(buildToUnsave)) {
                     setStatus(false);
                     setMessage("Build Removed From Saved. Refresh to see changes."); //Alert
                     setShow(true);
-                    // loadSavedBuilds();
+                    loadSavedBuilds();
                 }
             }
         })
+
     }
 
     const loadSavedBuilds = async () => {
@@ -82,29 +81,29 @@ export default function BuildCard({ buildInfo: build }) {
                 {/* <Card.Img className="buildCardImg" variant="top" src={buildImage} alt="Dust Bunny" title="Placeholder Dust Bunny" /> */}
                 {loading ?
                     <div className="buildCardImg">
-                    <FontAwesomeIcon className="fa-spin fa-4x buildCardGear" icon={faGear} />
+                        <FontAwesomeIcon className="fa-spin fa-4x buildCardGear" icon={faGear} />
                     </div>
                     :
-                    <Card.Img className="buildCardImg" variant="top" src={buildImage} alt={build.name} title={build.name} />
+                    <Card.Img className="buildCardImg" variant="top" src={buildImage} alt={props.buildInfo.name} title={props.buildInfo.name} />
                 }
                 {/* Still need a way to reload the page when saved / unsaved */}
                 {
                     savedBuildsData === undefined ? null : //Prevent erroring when loading
-                        currentUser.id === build.userId ? null : // Prevent user from saving their own builds
-                            savedBuildsData.some((savedBuild) => savedBuild.id === build.id) ?
-                                <Button className="saveBtn" onClick={() => unsaveBuild(build)}>Unfollow</Button>
+                        currentUser.id === props.buildInfo.userId ? null : // Prevent user from saving their own builds
+                            savedBuildsData.some((savedBuild) => savedBuild.id === props.buildInfo.id) ?
+                                <Button className="saveBtn" onClick={() => unsaveBuild(props.buildInfo)}>Unfollow</Button>
                                 // <FontAwesomeIcon className="fa-1x saveBtn" title="Unfollow Build" alt="Unfollow build" icon={faHeartOut} onClick={() => unsaveBuild(build)}/>
                                 :
-                                <Button className="saveBtn" onClick={() => saveBuild(build)}>Follow</Button>
+                                <Button className="saveBtn" onClick={() => saveBuild(props.buildInfo)}>Follow</Button>
                     // <FontAwesomeIcon className="fa-1x saveBtn" title="Follow Build" alt="Follow Build" icon={faHeart} onClick={() => saveBuild(build)}/>
                 }
                 <Card.Body>
-                    {build == null || build == undefined ? null :
+                    {props.buildInfo == null || props.buildInfo == undefined ? null :
                         <>
                             <Card.Title className="buildTitle">
-                                {build.name}
+                                {props.buildInfo.name}
                             </Card.Title>
-                            <BuildViewer build={build} buildPic={buildImage} /> {/* Floppy Disk Icon Here */}
+                            <BuildViewer build={props.buildInfo} buildPic={buildImage} /> {/* Floppy Disk Icon Here */}
                         </>
                     }
                 </Card.Body>

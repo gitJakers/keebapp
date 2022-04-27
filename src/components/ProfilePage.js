@@ -14,19 +14,20 @@ export default function ProfilePage() {
   const [buildData, setBuilds] = useState();
   const [commentData, setComments] = useState();
   
-  useEffect(() => {
+  useEffect(async() => {
     if(currentUser != null){
-      setSavedData(GetSavedBuilds());
       getData();
     }else if (localStorage.getItem('UserId') != null){
       getDataFromStorage();
     }
   }, [currentUser])
   
-  
   const getData = async() => {
     setBuilds(await GetBuildsByUserId(currentUser.id));
     setComments(await GetCommentsByUserId(currentUser.id));
+    // const savedArr = await GetSavedBuildsByUserId(currentUser.id);
+    // await GetSavedBuildsById(savedArr);
+    // setSavedData(GetSavedBuilds());
   }
 
   const getDataFromStorage = async() => {
@@ -34,6 +35,9 @@ export default function ProfilePage() {
     setUser(user);
     setBuilds(await GetBuildsByUserId(localStorage.getItem('UserId')));
     setComments(await GetCommentsByUserId(localStorage.getItem('UserId')));
+    // const savedArr = await GetSavedBuildsByUserId(user.id);
+    // await GetSavedBuildsById(savedArr);
+    // setSavedData(GetSavedBuilds());
   }
 
   const logout = () => {
