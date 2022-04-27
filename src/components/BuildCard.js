@@ -40,7 +40,6 @@ export default function BuildCard({ buildInfo: build }) {
         setLoading(false);
     }
     const saveBuild = async (build) => {
-        console.log("Favorite: ", build, currentUser.id)
         if (currentUser.id !== build.userId) {
             const result = SaveBuild(currentUser.id, build.id);
             const savedArr = await GetSavedBuildsByUserId(currentUser.id);
@@ -48,15 +47,12 @@ export default function BuildCard({ buildInfo: build }) {
             setStatus(false);
             setMessage("Build Added to Saved Builds.");
             setShow(true);
-            console.log(result);
         } else {
             setStatus(true);
             setShow(true);
-            console.log("Build Not saved");
         }
     }
     const unsaveBuild = async (build) => {
-        console.log("unsave this: ", build);
         const savedBuildsArray = await GetSavedBuildsByUserId(currentUser.id);
         let buildToUnsave = {};
         savedBuildsArray.map(savedBuild => {

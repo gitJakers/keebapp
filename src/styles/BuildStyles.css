@@ -58,6 +58,7 @@ div.card-body div.buildTitle {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: auto;
 }
 
 .buildCardImg {
@@ -85,6 +86,15 @@ img.buildCardImg {
   border-radius: 5px;
   margin: 1rem;
   padding: 1rem;
+}
+
+button.viewBtn {
+  border-radius: .7rem;
+  /* font-weight: bold; */
+}
+
+button.saveBtn {
+  border-radius: 0px 23px 0px 23px;
 }
 
 /* Builds Page Styles Above */

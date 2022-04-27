@@ -57,7 +57,7 @@ export default function BuildViewer({ build: buildData, buildPic: buildImage }) 
 
   return (
     <div>
-      <Button variant="primary" onClick={() => handleView()}>
+      <Button className="viewBtn" variant="primary" onClick={() => handleView()}>
         View
       </Button>
       <Modal className="buildViewerModal" show={showModal} onHide={handleClose} centered>
