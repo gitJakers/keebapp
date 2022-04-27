@@ -8,7 +8,7 @@ import BuildViewer from '../components/BuildViewer.js';
 import Toast from 'react-bootstrap/Toast'
 import ToastContainer from 'react-bootstrap/ToastContainer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faGear } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartOut } from '@fortawesome/free-regular-svg-icons';
 
 export default function BuildCard({ buildInfo: build }) {
@@ -17,6 +17,7 @@ export default function BuildCard({ buildInfo: build }) {
     const [buildImage, setImage] = useState(null);
     const [showToast, setShow] = useState(false);
     const [toastStatus, setStatus] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [toastMessage, setMessage] = useState("Build Added to Saved Builds.");
 
     useEffect(async () => {
@@ -24,6 +25,7 @@ export default function BuildCard({ buildInfo: build }) {
     }, [])
 
     const handleGet = async () => { //Change this to url 
+        setLoading(true);
         //https://keyboardapi.azurewebsites.net/
         //http://localhost:5196/
         let res = await fetch(`https://keyboardapi.azurewebsites.net/Builds/GetImageByName/${build.name}`);
@@ -35,6 +37,7 @@ export default function BuildCard({ buildInfo: build }) {
             setImage(reader.result);
         };
         reader.readAsDataURL(file);
+        setLoading(false);
     }
     const saveBuild = async (build) => {
         console.log("Favorite: ", build, currentUser.id)
@@ -64,7 +67,7 @@ export default function BuildCard({ buildInfo: build }) {
                 if (UnsaveBuild(buildToUnsave)) {
                     setStatus(false);
                     setMessage("Build Removed From Saved. Refresh to see changes."); //Alert
-                    setShow(true);  
+                    setShow(true);
                     // loadSavedBuilds();
                 }
             }
@@ -80,7 +83,14 @@ export default function BuildCard({ buildInfo: build }) {
     return (
         <>
             <Card className="buildCard">
-                <Card.Img className="buildCardImg" variant="top" src={buildImage === null || buildImage.length <= 7000 ? DustBunny : buildImage} alt="Dust Bunny" title="Placeholder Dust Bunny" />
+                {/* <Card.Img className="buildCardImg" variant="top" src={buildImage} alt="Dust Bunny" title="Placeholder Dust Bunny" /> */}
+                {loading ?
+                    <div className="buildCardImg">
+                    <FontAwesomeIcon className="fa-spin fa-4x buildCardGear" icon={faGear} />
+                    </div>
+                    :
+                    <Card.Img className="buildCardImg" variant="top" src={buildImage} alt={build.name} title={build.name} />
+                }
                 {/* Still need a way to reload the page when saved / unsaved */}
                 {
                     savedBuildsData === undefined ? null : //Prevent erroring when loading
@@ -90,16 +100,16 @@ export default function BuildCard({ buildInfo: build }) {
                                 // <FontAwesomeIcon className="fa-1x saveBtn" title="Unfollow Build" alt="Unfollow build" icon={faHeartOut} onClick={() => unsaveBuild(build)}/>
                                 :
                                 <Button className="saveBtn" onClick={() => saveBuild(build)}>Follow</Button>
-                                // <FontAwesomeIcon className="fa-1x saveBtn" title="Follow Build" alt="Follow Build" icon={faHeart} onClick={() => saveBuild(build)}/>
+                    // <FontAwesomeIcon className="fa-1x saveBtn" title="Follow Build" alt="Follow Build" icon={faHeart} onClick={() => saveBuild(build)}/>
                 }
                 <Card.Body>
-                    {build == null || build == undefined ? null : 
-                    <>
-                    <Card.Title className="buildTitle">
-                        {build.name}
-                    </Card.Title>
-                    <BuildViewer build={build} buildPic={buildImage} /> {/* Floppy Disk Icon Here */}
-                    </>
+                    {build == null || build == undefined ? null :
+                        <>
+                            <Card.Title className="buildTitle">
+                                {build.name}
+                            </Card.Title>
+                            <BuildViewer build={build} buildPic={buildImage} /> {/* Floppy Disk Icon Here */}
+                        </>
                     }
                 </Card.Body>
             </Card>
