@@ -19,6 +19,8 @@ export default function ResourcePage() {
       {/* Banner */}
       <Banner title="Useful Resources" />
       <div id="resourcePage">
+        <br />
+        <hr />
         {/* Resource Intro */}
         <div id="resourcesHeader">
           <h2 id="resourceTitle">

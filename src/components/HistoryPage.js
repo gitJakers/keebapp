@@ -18,7 +18,9 @@ export default function HistoryPage() {
             {/* Article Section */}
             <div id="historyPage">
                 <div id="historyTitle">
+                    <hr />
                     <h1>A Brief History Of Layouts</h1>
+                    <hr />
                 </div>
                 <div id="historyArticleSection">
                     <div id='historyImgBox'>
