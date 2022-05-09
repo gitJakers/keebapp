@@ -48,7 +48,7 @@ export default function ResourcePage() {
                 <br />
                 A great place to start for the new and veteran alike!
               </p>
-              <a href="https://mechanicalkeyboards.com/index.php">
+              <a href="https://mechanicalkeyboards.com/index.php" target="_blank">
                 <p>Check them out here!</p>
               </a>
             </div>
@@ -73,7 +73,7 @@ export default function ResourcePage() {
                 <br />
                 this is the place for you.
               </p>
-              <a href="https://kbdfans.com/">
+              <a href="https://kbdfans.com/" target="_blank">
                 <p>Check them out here!</p>
               </a>
             </div>
@@ -96,7 +96,7 @@ export default function ResourcePage() {
                 <br />
                 of custom prebuilt keyboards. Definitely worth checking out!
               </p>
-              <a href="https://drop.com/mechanical-keyboards/home">
+              <a href="https://drop.com/mechanical-keyboards/home" target="_blank">
                 <p>Check them out here!</p>
               </a>
             </div>
@@ -118,7 +118,7 @@ export default function ResourcePage() {
                 <br />
                 some of the more trendy builds out there.
               </p>
-              <a href="https://www.reddit.com/r/MechanicalKeyboards/">
+              <a href="https://www.reddit.com/r/MechanicalKeyboards/" target="_blank">
                 <p>Check them out here!</p>
               </a>
             </div>
