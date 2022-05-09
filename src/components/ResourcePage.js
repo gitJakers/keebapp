@@ -24,7 +24,7 @@ export default function ResourcePage() {
           <h2 id="resourceTitle">
             New to the mechanical keyboard scene?
             <br />
-            Here are some helpful links to get started
+            Here are some helpful links to get started.
           </h2>
         </div>
         <hr />

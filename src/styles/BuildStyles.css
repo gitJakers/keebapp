@@ -72,6 +72,7 @@ div.card-body div.buildTitle {
 
 img.buildCardImg {
   border-radius: 23px 23px 0% 0%;
+  max-height: 170px;
 }
 
 .card-body {

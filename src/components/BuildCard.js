@@ -28,7 +28,7 @@ export default function BuildCard(props) {
         setLoading(true);
         //https://keyboardapi.azurewebsites.net/
         //http://localhost:5196/
-        let res = await fetch(`https://keyboardapi.azurewebsites.net/Builds/GetImageByName/${props.buildInfo.name}`);
+        let res = await fetch(`http://localhost:5196/Builds/GetImageByName/${props.buildInfo.name}`);
         let data = await res.arrayBuffer();
         let newB = new Blob([data], { type: 'image/jpeg' })
         let file = new File([newB], props.buildInfo.name, { type: 'image/jpeg' })
